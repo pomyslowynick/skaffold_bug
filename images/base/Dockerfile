@@ -1,5 +1,4 @@
-ARG BASE
-FROM $BASE
+FROM alpine:latest
 
 RUN apk --no-cache add \
 	vim
