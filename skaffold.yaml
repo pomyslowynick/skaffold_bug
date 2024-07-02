@@ -1,0 +1,20 @@
+apiVersion: skaffold/v4beta10
+kind: Config
+build:
+  artifacts:
+    - image: alpine-base
+      context: images/base/
+    - image: alpine-derived
+      context: images/apps/
+      requires:
+        - image: alpine-base
+          alias: BASE
+  tagPolicy:
+    gitCommit:
+      variant: AbbrevTreeSha
+  platforms:
+    - linux/amd64
+  local:
+    useDockerCLI: true
+    useBuildkit: true
+    tryImportMissing: true
